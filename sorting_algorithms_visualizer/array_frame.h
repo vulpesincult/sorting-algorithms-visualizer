@@ -86,6 +86,7 @@ private:
 	std::atomic<bool> is_paused;
 	std::atomic<bool> is_breaking_operations;
 
+	static const size_t highlight_ttl = 10000000;
 	static const size_t default_array_size = 1000;
 	static const size_t horizontal_offset = 5;
 	static const size_t vertical_offset = 5;

@@ -163,7 +163,7 @@ void array_frame::initialize()
 	this->setAutoFillBackground(true);
 	this->setPalette(palette);
 	info_label.setObjectName(QString::fromUtf8("info_label"));
-	info_label.setGeometry(QRect(10, 0, 500, 10));
+	info_label.setGeometry(QRect(10, 0, 500, 15));
 	info_label.setStyleSheet("color: rgb(255, 255, 255)");
 
 	update();
@@ -239,7 +239,7 @@ void array_frame::paintEvent(QPaintEvent * event)
 		++i)
 	{
 		bars_heights[i] = values[int(step * i)].value;
-		if ((std::chrono::steady_clock::now() - values[int(step * i)].last_interaction_time).count() < 100000000)
+		if ((std::chrono::steady_clock::now() - values[int(step * i)].last_interaction_time).count() < highlight_ttl)
 		{
 			bars_colors[i] = highlight_colors.at(values[int(step * i)].last_interaction);
 		}
@@ -299,7 +299,7 @@ void array_frame::paintEvent(QPaintEvent * event)
 	{
 		shifts_count_str.insert(i, '`');
 	}
-	info_label.setText(QString::number(1000 / (runtime + 1)) + "; moves: " + moves_counter_str + "; compares: " + compares_count_str + "; shifts: " + shifts_count_str);
+	info_label.setText(/*QString::number(1000 / (runtime + 1)) + */"; moves: " + moves_counter_str + "; comparisons: " + compares_count_str + "; shifts: " + shifts_count_str);
 
 	update();
 }
