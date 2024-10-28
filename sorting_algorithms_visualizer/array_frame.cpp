@@ -166,7 +166,7 @@ void array_frame::initialize()
 	info_label.setGeometry(QRect(10, 0, 500, 15));
 	info_label.setStyleSheet("color: rgb(255, 255, 255)");
 
-	update();
+	startTimer(1000 / 60);
 }
 
 array_frame::array_frame(QWidget * parent = Q_NULLPTR) :
@@ -299,9 +299,7 @@ void array_frame::paintEvent(QPaintEvent * event)
 	{
 		shifts_count_str.insert(i, '`');
 	}
-	info_label.setText(/*QString::number(1000 / (runtime + 1)) + */"; moves: " + moves_counter_str + "; comparisons: " + compares_count_str + "; shifts: " + shifts_count_str);
-
-	update();
+	info_label.setText(/*QString::number(runtime) + */"; moves: " + moves_counter_str + "; comparisons: " + compares_count_str + "; shifts: " + shifts_count_str);
 }
 
 void array_frame::timerEvent(QTimerEvent * event)
